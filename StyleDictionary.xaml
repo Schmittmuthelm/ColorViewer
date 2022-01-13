@@ -22,6 +22,7 @@
     </Style>
 
     <Style x:Key="CopyButton" TargetType="Button">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Height" Value="40"/>
@@ -151,6 +152,7 @@
     </Style>
 
     <Style TargetType="DataGridCell">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
     </Style>
