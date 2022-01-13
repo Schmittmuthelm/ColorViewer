@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PackageId>ColorViewer</PackageId>
+    <Authors>T. Hohmann</Authors>
+    <Company />
+    <Product>ColorViewer</Product>
+    <Description>A simple tool to get a look at what various color combinations (background and foreground) may look like.
+There is also a possibility to copy either the name or the representative hex-value of the selected color (more or less simultaneously for the background and the foreground color).</Description>
+    <Copyright>T.Hohmann Copyright  ©2022 All Rights Reserved</Copyright>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageIcon>ColorPicker.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/Schmittmuthelm/ColorViewer</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ColorPicker.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="..\..\ColorPicker.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ColorPicker.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="EnumBindingSourceExtension.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,169 @@
+﻿<Window x:Class="WpfColorView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfColorView"
+        mc:Ignorable="d"
+        xmlns:Converters="clr-namespace:WpfColorView.Converters"
+        d:DataContext="{d:DesignInstance Type={x:Type local:MainWindow}, IsDesignTimeCreatable=True}"
+        Icon=" /ColorPicker.ico"       
+        Title="{Binding Source={x:Static local:MainWindow.AssemblyVersion}, StringFormat='{} ColorViewer   V{0}'}"
+        WindowStartupLocation="CenterScreen" Background="Black"
+        Height="720" Width="1220"
+        MinHeight="610" MinWidth="860">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Converters:SelectedColorInfoToBrushConverter x:Key="SelectedColorInfoToBrush"/>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="5">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--Background-->
+        <TextBlock Text="Background"/>
+        <DataGrid ItemsSource="{Binding ColorInfos}" x:Name="DgBackground"
+                  Grid.Row="1" SelectedItem="{Binding SelectedBackground}">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Header="Sample">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Rectangle Height="40" Width="90" Margin="5" Fill="{Binding SampleBrush}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Color" Binding="{Binding ColorName}" Width="*" ElementStyle="{StaticResource VerticalTextAlignment}"/>
+                <DataGridTextColumn Header="Hex Value" Binding="{Binding HexString}" Width="*" ElementStyle="{StaticResource VerticalTextAlignment}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Foreground-->
+        <TextBlock Grid.Column="1" Text="Foreground"/>
+        <DataGrid ItemsSource="{Binding ColorInfos}" x:Name="DgForeground"
+                  Grid.Column="1" Grid.Row="1" SelectedItem="{Binding SelectedForeground}">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Header="Sample">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Rectangle Height="40" Width="90" Margin="5" Fill="{Binding SampleBrush}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Color" Binding="{Binding ColorName}" Width="*" ElementStyle="{StaticResource VerticalTextAlignment}"/>
+                <DataGridTextColumn Header="Hex Value" Binding="{Binding HexString}" Width="*" ElementStyle="{StaticResource VerticalTextAlignment}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Result-->
+        <TextBlock Grid.Column="2" Text="Result"/>
+        <Grid Grid.Column="2" Grid.Row="1" Margin="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox Background="{Binding SelectedBackground, Converter={StaticResource SelectedColorInfoToBrush}}" 
+                     Foreground="{Binding SelectedForeground, Converter={StaticResource SelectedColorInfoToBrush}}"
+                     Text="Sample Text"
+                     Height="40" Margin="5" IsHitTestVisible="False"/>
+            
+            <!--Background-->
+            <GroupBox Grid.Row="1" >
+                <GroupBox.Header>
+                    <TextBlock Text="Background"/>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Name:" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="UniTextbox" Grid.Column="1" Text="{Binding SelectedBackground.ColorName}"/>
+                    <Button Grid.Column="2" Height="40" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedBackground.ColorName}"/>
+
+                    <TextBlock Grid.Row="1" Text="Hex-Value:" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedBackground.HexString, Mode=OneWay}"/>
+                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedBackground.HexValue}"/>
+
+                    <TextBlock Grid.Row="2" Text="Color:" HorizontalAlignment="Left"/>
+                    <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource ColorDetailBorder}">
+                        <Rectangle Fill="{Binding SelectedBackground, Converter={StaticResource SelectedColorInfoToBrush}}"
+                                   Width="{Binding ElementName=UniTextbox, Path=ActualWidth}"
+                                   Height="{Binding ElementName=UniTextbox, Path=ActualHeight}"/>
+                    </Border>
+                </Grid>
+            </GroupBox>
+            
+            <!--Foreground-->
+            <GroupBox Grid.Row="2">
+                <GroupBox.Header>
+                    <TextBlock Text="Foreground"/>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Name:" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="1" Text="{Binding SelectedForeground.ColorName}"/>
+                    <Button Grid.Column="2" Height="40" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedForeground.ColorName}"/>
+
+                    <TextBlock Grid.Row="1" Text="Hex-Value:" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedForeground.HexString, Mode=OneWay}"/>
+                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedForeground.HexValue}"/>
+
+                    <TextBlock Grid.Row="2" Text="Color:" HorizontalAlignment="Left"/>
+                    <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource ColorDetailBorder}">
+                        <Rectangle Fill="{Binding SelectedForeground, Converter={StaticResource SelectedColorInfoToBrush}}"
+                                   Width="{Binding ElementName=UniTextbox, Path=ActualWidth}"
+                                   Height="{Binding ElementName=UniTextbox, Path=ActualHeight}"/>
+                    </Border>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="3" Padding="5">
+                <GroupBox.Header>
+                    <TextBlock Text="Color order:"/>
+                </GroupBox.Header>
+                <ListBox Background="Black" ItemsSource="{Binding Source={local:EnumBindingSource {x:Type local:ColorOrder}}}" SelectedItem="{Binding SelectedColorOrder}"/>
+            </GroupBox>
+            
+        </Grid>
+    </Grid>
+</Window>
