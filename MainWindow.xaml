@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         xmlns:Converters="clr-namespace:WpfColorView.Converters"
         d:DataContext="{d:DesignInstance Type={x:Type local:MainWindow}, IsDesignTimeCreatable=True}"
-        Icon=" /ColorPicker.ico"       
+        Icon="/ColorPicker.ico"       
         Title="{Binding Source={x:Static local:MainWindow.AssemblyVersion}, StringFormat='{} ColorViewer   V{0}'}"
         WindowStartupLocation="CenterScreen" Background="Black"
-        Height="720" Width="1220"
+        Height="730" Width="1230"
         MinHeight="610" MinWidth="860">
 
     <Window.Resources>
