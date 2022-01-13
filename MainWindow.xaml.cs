@@ -32,12 +32,6 @@ namespace WpfColorView
         {
             InitializeComponent();
             DataContext = this;
-
-            SizeChanged += (sender, e) =>
-            {
-                System.Diagnostics.Debug.WriteLine($"W: {ActualWidth} | H: {ActualHeight}");
-            };
-
             allColors = typeof(Colors).GetProperties().Select(pInfo => new ColorInfo(pInfo.Name, (Color)pInfo.GetValue(null, null)));
 
             foreach (var element in Enum.GetValues<ColorOrder>())
