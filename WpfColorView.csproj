@@ -16,18 +16,12 @@ There is also a possibility to copy either the name or the representative hex-va
     <PackageIconUrl />
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/Schmittmuthelm/ColorViewer</RepositoryUrl>
+    <ApplicationIcon>ColorPicker.ico</ApplicationIcon>
+    <AssemblyName>Color Viewer</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="ColorPicker.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="..\..\ColorPicker.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>
