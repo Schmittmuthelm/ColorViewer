@@ -112,7 +112,7 @@
 
                     <TextBlock Grid.Row="1" Text="Hex-Value:" HorizontalAlignment="Left"/>
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedBackground.HexString, Mode=OneWay}"/>
-                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedBackground.HexValue}"/>
+                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedBackground.HexString}"/>
 
                     <TextBlock Grid.Row="2" Text="Color:" HorizontalAlignment="Left"/>
                     <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource ColorDetailBorder}">
@@ -146,7 +146,7 @@
 
                     <TextBlock Grid.Row="1" Text="Hex-Value:" HorizontalAlignment="Left"/>
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedForeground.HexString, Mode=OneWay}"/>
-                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedForeground.HexValue}"/>
+                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CopyButton}" Command="{Binding CopyCommand}" CommandParameter="{Binding SelectedForeground.HexString}"/>
 
                     <TextBlock Grid.Row="2" Text="Color:" HorizontalAlignment="Left"/>
                     <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource ColorDetailBorder}">
